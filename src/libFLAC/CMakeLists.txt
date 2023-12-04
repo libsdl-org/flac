@@ -103,6 +103,11 @@ if(BUILD_SHARED_LIBS)
         SOVERSION 8)
     if(NOT WIN32)
         set_target_properties(FLAC PROPERTIES C_VISIBILITY_PRESET hidden)
+    else()
+        # FIXME: keep soversion in sync with autotools
+        set_property(TARGET FLAC PROPERTY RUNTIME_OUTPUT_NAME "FLAC-8")
+        # Requires CMake 3.27, so not sufficient
+        set_property(TARGET FLAC PROPERTY DLL_NAME_WITH_SOVERSION FALSE)
     endif()
 endif()
 
