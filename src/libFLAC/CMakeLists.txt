@@ -113,7 +113,7 @@ endif()
 
 add_library(FLAC::FLAC ALIAS FLAC)
 
-
+if(FLAC_IS_TOP_LEVEL)
 install(TARGETS FLAC EXPORT targets
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}/"
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}/"
@@ -127,4 +127,5 @@ if(INSTALL_PKGCONFIG_MODULES)
     configure_file(flac.pc.in flac.pc @ONLY)
     install(FILES "${CMAKE_CURRENT_BINARY_DIR}/flac.pc"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+endif()
 endif()
