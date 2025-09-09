@@ -97,7 +97,7 @@ if(HAVE_STACK_PROTECTOR_FLAG)
 endif()
 
 if(CMAKE_SYSTEM_PROCESSOR STREQUAL "i686" AND HAVE_STACKREALIGN_FLAG)
-    add_compile_options(-mstackrealign)
+    add_compile_options($<$<OR:$<COMPILE_LANGUAGE:C>,$<COMPILE_LANGUAGE:CXX>>:-mstackrealign>)
 endif()
 
 include_directories("include")
