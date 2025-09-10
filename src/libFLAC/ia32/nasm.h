@@ -32,10 +32,17 @@
 	bits 32
 
 %ifdef OBJ_FORMAT_win32
+    %ifdef __YASM_MAJOR__
+	%define FLAC__PUBLIC_NEEDS_UNDERSCORE
+	%idefine code_section section .text align=16
+	%idefine data_section section .data align=32
+	%idefine bss_section  section .bss  align=32
+    %else
 	%define FLAC__PUBLIC_NEEDS_UNDERSCORE
 	%idefine code_section section .text align=16 class=CODE use32
 	%idefine data_section section .data align=32 class=DATA use32
 	%idefine bss_section  section .bss  align=32 class=DATA use32
+    %endif
 %elifdef OBJ_FORMAT_aout
 	%define FLAC__PUBLIC_NEEDS_UNDERSCORE
 	%idefine code_section section .text
@@ -68,7 +75,9 @@
 	%ifdef FLAC__PUBLIC_NEEDS_UNDERSCORE
 		global _%1
 	%else
-		%if __NASM_MAJOR__ >= 2
+		%ifdef __YASM_MAJOR__
+			global %1:function hidden
+		%elif __NASM_MAJOR__ >= 2
 			global %1:function hidden
 		%else
 			global %1
