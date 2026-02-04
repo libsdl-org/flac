@@ -2,7 +2,7 @@
 # 3.3 is needed in src/libFLAC
 # 3.5 is needed in src/libFLAC/ia32
 # 3.9 is needed in 'doc' because of doxygen_add_docs()
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
 if(NOT (CMAKE_BUILD_TYPE OR CMAKE_CONFIGURATION_TYPES OR DEFINED ENV{CFLAGS} OR DEFINED ENV{CXXFLAGS}))
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build, options are: None Debug Release RelWithDebInfo")
